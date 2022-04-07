@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <style>
+        #container{
+            display: flex;
+            
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        #login{
+            margin-top: 20px;
+            margin-left: 60px;
+            background-color: blue;
+            
+        }
+        h1{
+            text-align: center;
+        }
+        #link{
+            text-decoration: underline;
+            color: green;
+        }
+        #link:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <div id="container">
+        <form>
+            <p>Email</p>
+            <input id="email" type="email" placeholder="Enter your email" required>
+            <p>Password</p>
+            <input type="password" id="password" placeholder="Password" required>
+            <br>
+            <input id="login" type="submit" value="Login">
+
+            <br>
+            <br>
+            <br>
+            <p>Create new account <a id="link">Signup</a></p>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.querySelector("form").addEventListener("submit",loginFn);
+    document.querySelector("#link").addEventListener("click",signupfn);
+
+    function signupfn(){
+        window.location.href="signup.html";
+    }
+
+    var registeredUsers = JSON.parse(localStorage.getItem("userdata"));
+    function loginFn() {
+        event.preventDefault();
+        var enteredEmail = document.querySelector("#email").value;
+        var enteredPassword = document.querySelector("#password").value;
+        registeredUsers.forEach(function(userData){
+            if(userData.email == enteredEmail && userData.password == enteredPassword) {
+                alert("LOGIN SUCCESS");
+                window.location.href =  "mens.html";
+            } 
+            else {
+               alert("Incorrect Details");
+            }
+            
+        });
+    }
+
+    
+</script>
+</html>
